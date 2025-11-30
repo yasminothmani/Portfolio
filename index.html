@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasmin Othmani - Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2D5F7E 0%, #4A8BA8 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2D5F7E;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #C17F5D;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Photo */
+       .profile-photo {
+    width: 250px;  /* increased from 200px */
+    height: 250px; /* increased from 200px */
+    border-radius: 50%;
+    border: 5px solid #C17F5D;
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: photoFloat 3s ease-in-out infinite;
+    object-fit: cover;
+}
+
+
+        @keyframes photoFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: #C17F5D;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #C17F5D;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #A66B4E;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #2D5F7E;
+        }
+
+        /* Floating shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            background: #C17F5D;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+
+        /* Section styling */
+        section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #2D5F7E;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #f8f9fa;
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: both;
+            border-top: 4px solid #C17F5D;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+        .skill-category:nth-child(4) { animation-delay: 0.4s; }
+        .skill-category:nth-child(5) { animation-delay: 0.5s; }
+        .skill-category:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .skill-category h3 {
+            color: #2D5F7E;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #2D5F7E 0%, #4A8BA8 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: both;
+            border-left: 4px solid #C17F5D;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-card h3 {
+            color: #2D5F7E;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .project-year {
+            color: #C17F5D;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #f8f9fa;
+        }
+
+        .experience-timeline {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #C17F5D;
+            animation: slideRight 0.6s ease-out;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .experience-item h3 {
+            color: #2D5F7E;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #C17F5D;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-item li {
+            color: #555;
+            line-height: 1.8;
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #C17F5D;
+            font-weight: bold;
+        }
+
+        /* Certifications Section */
+        .certifications {
+            background: white;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .cert-item {
+            background: linear-gradient(135deg, #2D5F7E 0%, #4A8BA8 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            animation: popIn 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .cert-item:nth-child(1) { animation-delay: 0.1s; }
+        .cert-item:nth-child(2) { animation-delay: 0.2s; }
+        .cert-item:nth-child(3) { animation-delay: 0.3s; }
+        .cert-item:nth-child(4) { animation-delay: 0.4s; }
+        .cert-item:nth-child(5) { animation-delay: 0.5s; }
+        .cert-item:nth-child(6) { animation-delay: 0.6s; }
+        .cert-item:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cert-item:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #C17F5D 0%, #A66B4E 100%);
+        }
+
+        .cert-item h4 {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #2D5F7E 0%, #4A8BA8 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 2rem auto;
+            font-size: 1.1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            border: 2px solid #C17F5D;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: #C17F5D;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+      @media (max-width: 768px) {
+    .profile-photo {
+        width: 180px;  /* increased from 150px */
+        height: 180px; /* increased from 150px */
+    }
+}
+
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="hero-content">
+            <img src="C:\Users\21694\Downloads\462575512_1047460707119217_6411801626493254749_n-removebg-preview.png" alt="Yasmin Othmani" class="profile-photo">
+            <h1>Yasmin Othmani</h1>
+            <p class="subtitle">Data Science Engineering Student</p>
+            <p class="tagline">Machine Learning | AI | Business Intelligence | Cloud Computing</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Get In Touch</a>
+                <a href="#projects" class="cta-button secondary">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>I'm a Data Science Engineering student at Esprit, Tunisia, with a strong background in data analysis, machine learning, and business intelligence. My passion lies in identifying patterns, building predictive models, and supporting decision-making with data-driven insights.</p>
+            <p>Currently pursuing my Engineering Degree in Computer Science with a Data Science Specialization (Expected 2026), I combine technical expertise with leadership skills developed through international experiences, including a Language and Cultural Exchange program in Ankara, Turkey.</p>
+            <p>As a dependable team player with teaching abilities and cross-cultural communication skills, I thrive in collaborative environments and am always eager to learn and apply cutting-edge technologies to solve real-world problems.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-categories">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">NoSQL</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">R</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">DAX</span>
+                    <span class="skill-tag">PHP</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">SpringBoot</span>
+                    <span class="skill-tag">.NET</span>
+                    <span class="skill-tag">JavaFX</span>
+                    <span class="skill-tag">Symfony</span>
+                    <span class="skill-tag">Qt</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>DevOps & Cloud</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">Bicep</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Data Science & AI</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">CNN</span>
+                    <span class="skill-tag">ResNet</span>
+                    <span class="skill-tag">LLM</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">Crew.AI</span>
+                    <span class="skill-tag">Spark</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>BI & Monitoring</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Application Insights</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Design & Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">Web Design</span>
+                    <span class="skill-tag">Photoshop</span>
+                    <span class="skill-tag">Illustrator</span>
+                    <span class="skill-tag">Video Editing</span>
+                </div>
+            </div>
+
+
+           <div class="skill-category">
+    <h3>Soft Skills</h3>
+    <div class="skill-tags">
+        <span class="skill-tag">Effective Communication</span>
+        <span class="skill-tag">Emotional Intelligence</span>
+        <span class="skill-tag">Collaboration</span>
+        <span class="skill-tag">Leadership</span>
+        <span class="skill-tag">Cross-Cultural Teaching</span>
+        <span class="skill-tag">Proactive Problem Solving</span>
+        <span class="skill-tag">Public Speaking</span>
+        <span class="skill-tag">Voice-over & Podcasting</span>
+    </div>
+</div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+         <div class="project-card">
+    <h3>Match-Wize</h3>
+    <p class="project-year">2025</p>
+    <p>Developed an intelligent hiring platform connecting companies with the most relevant candidates efficiently.</p>
+    <p>Built a job–candidate recommendation system that matches CVs with job descriptions using semantic similarity.</p>
+    <p>Implemented automated candidate scoring based on skills and experience, ensuring fair and accurate evaluations.</p>
+    <p>Generated structured reports summarizing candidate profiles and interview results for recruiters.</p>
+    <p>Created adaptive question-generation agents to tailor interview questions based on candidate skills.</p>
+    <p>Automated interview scheduling and candidate communication to streamline recruitment workflows.</p>
+
+</div>
+
+            
+           <div class="project-card">
+    <h3>MarketMind</h3>
+    <p class="project-year">2025</p>
+    <p>Developed an AI-powered marketing assistant that automates content generation for small businesses.</p>
+    <p>Built sentiment classification and trend analysis tools to track campaign performance and audience response.</p>
+    <p>Designed a multi-LLM matching system to select the most suitable approach for each marketing task.</p>
+    <p>Implemented sentiment tone detection and audience preference analysis to optimize engagement and maximize impact.</p>
+    <p>Automated the creation of marketing content including text, images, and videos, tailored to campaign goals.</p>
+</div>
+
+            
+            <div class="project-card">
+                <h3>Deep Learning for Medical Imaging</h3>
+                <p class="project-year">2025</p>
+                <p>Built CNN and ResNet models for accurate brain tumor classification.</p>
+                <p>Implemented advanced preprocessing, data augmentation, and hyperparameter tuning.</p>
+                <p>Achieved optimized accuracy through systematic model refinement.</p>
+            </div>
+            
+            <div class="project-card">
+                <h3>TaskNest</h3>
+                <p class="project-year">2023</p>
+                <p>Built a cross-platform freelance marketplace with JavaFX desktop application and Symfony web interface.</p>
+                <p>Integrated intelligent task scheduling and automated job matching algorithms.</p>
+                <p>Implemented API connections for seamless data synchronization.</p>
+            </div>
+            
+            <div class="project-card">
+                <h3>ADHD Center Management System</h3>
+                <p class="project-year">2022</p>
+                <p>Created a comprehensive C++/Qt desktop application for healthcare management.</p>
+                <p>Implemented client registration system with QR code generation for efficient tracking.</p>
+                <p>Designed and developed supporting website using PHP, JavaScript, and HTML.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3>CloudShift - Azure Infrastructure as Code Project</h3>
+                <p class="experience-meta">2025</p>
+                <ul>
+                    <li>Deployed Azure infrastructure using Bicep templates for Infrastructure as Code (IaC)</li>
+                    <li>Implemented automated CI/CD pipelines with GitHub Actions</li>
+                    <li>Integrated comprehensive monitoring tools including Application Insights and Network Security Groups (NSG)</li>
+                    <li>Managed cloud resources and automation workflows for efficient deployment</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <h3>Business Intelligence Intern - Ticket Management Dashboard</h3>
+                <p class="experience-meta">MP Soft | 2024</p>
+                <ul>
+                    <li>Developed and implemented a comprehensive ticket management dashboard using Power BI</li>
+                    <li>Integrated data from a data warehouse to generate actionable insights for executives</li>
+                    <li>Enabled comprehensive tracking and strategic decision-making through interactive visualizations</li>
+                    <li>Successfully delivered executive-level reporting that improved operational efficiency</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-item">
+                <h4>Microsoft Certified: Azure Fundamentals (AZ-900)</h4>
+            </div>
+            <div class="cert-item">
+                <h4>AWS Academy Graduate: Cloud Foundations</h4>
+            </div>
+            <div class="cert-item">
+                <h4>Applications of AI for Anomaly Detection - NVIDIA</h4>
+            </div>
+            <div class="cert-item">
+                <h4>Building Transformer-Based NLP Applications - NVIDIA</h4>
+            </div>
+            <div class="cert-item">
+                <h4>Cisco Certified Network Associate (CCNA)</h4>
+            </div>
+            <div class="cert-item">
+                <h4>Hashgraph Developer Course</h4>
+            </div>
+            <div class="cert-item">
+                <h4>Leadership Development Experience - AIESEC</h4>
+            </div>
+                <div class="cert-item">
+                <h4>Language and Cultural Exchange Certificate Ankara, Turkey (2025) </h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+            <p><strong>Email:</strong> yasmineothmani284@gmail.com</p>
+            <p><strong>Phone:</strong> +216 94 233 067</p>
+            <p><strong>Location:</strong> Soukra, Ariana, Tunisia</p>
+            <p><strong>Languages:</strong> Arabic (Native), English (B2), French (B2)</p>
+        </div>
+        <p>Interested in collaborating on data science projects or discussing opportunities?</p>
+        <div class="contact-links">
+            <a href="mailto:yasmineothmani284@gmail.com" class="contact-link">Email Me</a>
+            <a href="tel:+21694233067" class="contact-link">Call Me</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-category, .cert-item, .experience-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
